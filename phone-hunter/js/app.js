@@ -11,7 +11,7 @@ const displayMyPhones = phones => {
     // refresh  loading page 
     displayPhones.innerHTML = ''
     // display only 20 result
-    phones = phones.slice(0, 20)
+    // phones = phones.slice(0, 20)
     // showing no phone found alart
     const NoPhoneMessage = document.getElementById('NoPhoneAlart')
     if (phones.length === 0) {
@@ -35,13 +35,27 @@ const displayMyPhones = phones => {
                     `
         displayPhones.appendChild(phoneDiv)
     })
-
+    // spinner stop
+    toggleSpinner(false)
 }
 
 document.getElementById('search-btn').addEventListener('click', function () {
+    // spinner start
+    toggleSpinner(true)
     const searchField = document.getElementById('seach-field')
     const searchPhones = searchField.value
     loadPhones(searchPhones)
 })
+
+const toggleSpinner = isloding => {
+    const spinLoder = document.getElementById('spinLoder')
+    if (isloding) {
+        spinLoder.classList.remove('d-none')
+    }
+    else {
+        spinLoder.classList.add('d-none')
+    }
+
+}
 
 // loadPhones()
